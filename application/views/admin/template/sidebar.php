@@ -25,8 +25,8 @@
                          </div>
                          <div class="form-group">
                              <label for="namaKaryawan">NIK Karyawan</label>
-                             <input type="text" class="form-control" id="nikKaryawan" name="nikKaryawan" placeholder=""
-                                 required>
+                             <input type="text" minlength="16" maxlength="16" class="form-control nik-validation"
+                                 id="nikKaryawan" name="nikKaryawan" placeholder="" required>
                              <div class="invalid-feedback">
                                  NIK Karyawan Wajib di isi
                              </div>
@@ -108,11 +108,12 @@
      <!-- Divider -->
      <hr class="sidebar-divider">
 
+
+     <?php if ($this->session->userdata('role_user') == 'admin') : ?>
      <!-- Heading -->
      <div class="sidebar-heading">
          Tambah data
      </div>
-
      <li class="nav-item">
          <a class="nav-link collapsed" data-toggle="modal" data-target="#modalInputKaryawan" type=" button" href=""
              aria-expanded="true" aria-controls="collapseTwo">
@@ -123,6 +124,39 @@
 
      <!-- Divider -->
      <hr class="sidebar-divider">
+     <!-- Heading -->
+     <div class="sidebar-heading">
+         Setting Bonus & PPh
+     </div>
+
+     <li class="nav-item">
+         <a class="nav-link collapsed" type="button" href="<?php echo base_url('admin/settingbonus')?>"
+             aria-expanded="true" aria-controls="collapseTwo">
+             <i class="fas fa-fw fa-cog"></i>
+             <span>Settings</span>
+         </a>
+     </li>
+
+     <!-- Divider -->
+     <hr class="sidebar-divider">
+
+     <!-- Heading -->
+     <div class="sidebar-heading">
+         Buat Laporan
+     </div>
+
+     <li class="nav-item">
+         <a class="nav-link collapsed" type=" button" href="<?php echo base_url('admin/laporan')?>" aria-expanded="true"
+             aria-controls="collapseTwo">
+             <i class="far fa-file"></i>
+             <span>Buat laporan</span>
+         </a>
+     </li>
+
+     <!-- Divider -->
+     <hr class="sidebar-divider d-none d-md-block">
+
+     <?php endif; ?>
 
      <!-- Heading -->
      <div class="sidebar-heading">
@@ -146,18 +180,36 @@
          </div>
      </li>
 
+
      <!-- Divider -->
-     <hr class="sidebar-divider d-none d-md-block">
+     <!-- <hr class="sidebar-divider d-none d-md-block"> -->
+
      <!-- Heading -->
-     <div class="sidebar-heading">
-         Setting Bonus & PPh
+     <!-- <div class="sidebar-heading">
+         Buat Laporan
      </div>
 
      <li class="nav-item">
-         <a class="nav-link collapsed" type="button" href="<?php echo base_url('admin/settingbonus')?>"
+         <a class="nav-link collapsed" type=" button" href="<?php echo base_url('admin/laporan')?>" aria-expanded="true"
+             aria-controls="collapseTwo">
+             <i class="far fa-file"></i>
+             <span>Buat laporan</span>
+         </a>
+     </li> -->
+
+     <!-- Divider -->
+     <hr class="sidebar-divider d-none d-md-block">
+
+     <!-- Heading -->
+     <div class="sidebar-heading">
+         Data Laporan
+     </div>
+
+     <li class="nav-item">
+         <a class="nav-link collapsed" type=" button" href="<?php echo base_url('admin/laporan/showdatarekap')?>"
              aria-expanded="true" aria-controls="collapseTwo">
-             <i class="fas fa-fw fa-cog"></i>
-             <span>Settings</span>
+             <i class="fas fa-table"></i>
+             <span>Daftar Laporan</span>
          </a>
      </li>
 

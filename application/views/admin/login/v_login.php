@@ -22,7 +22,7 @@
     <link href="<?php echo base_url('assets/sbadmin2-templating')?> /css/sb-admin-2.css" rel="stylesheet">
     <link href="<?php echo base_url('assets/sbadmin2-templating')?> /css/script.css" rel="stylesheet">
 
-    <link rel="shortcut icon" href="<?php echo base_url('assets/sbadmin2-templating')?>/img/logoMasjid.png"
+    <link rel="shortcut icon" href="<?php echo base_url('assets/sbadmin2-templating')?>/img/buildings.png"
         type="image/x-icon">
 
 </head>

@@ -83,7 +83,7 @@
                   </div>
               </div>
 
-              <button type="submit" class="btn btn-primary ml-3 float-right ">Update</button>
+              <button type="submit" class="btn btn-primary ml-3 mb-3 float-right ">Update</button>
               <!-- <button type=" button" class="btn btn-warning float-right">Kosongkan</button> -->
 
           </div>

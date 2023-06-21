@@ -21,3 +21,13 @@ function notLogin()
         redirect('auth');
     }
 }
+
+function isAdmin()
+{
+    $ci = &get_instance();
+    $userSession = $ci->session->userdata('role_user');
+
+    if ($userSession != 'admin') {
+        redirect('notfound');
+    }
+}

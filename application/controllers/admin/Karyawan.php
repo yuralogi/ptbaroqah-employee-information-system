@@ -20,9 +20,7 @@ class Karyawan extends CI_Controller {
 		$this->form_validation->set_rules('gajiKaryawan','Username','required');
 
 		if ($this->form_validation->run() == false) {
-            $data['page_title'] = 'Data Karyawan';
-			$this->load->model('m_karyawan');
-            $this->load->view('admin/businesslogic/v_karyawan', $data);
+			redirect('admin/dashboard');
         } else {
 			//Validasi Lolos
             $this->_tambahDataKaryawan();
@@ -31,6 +29,7 @@ class Karyawan extends CI_Controller {
 
     private function _tambahDataKaryawan()
 	{
+		isAdmin();
 		$this->load->model('m_karyawan');
 		$data = array (
 			'nik_karyawan' => $this->input->post('nikKaryawan'),
@@ -68,7 +67,7 @@ class Karyawan extends CI_Controller {
     }
 
 	public function staff()
-    {
+    {	
 		$data['page_title'] = 'Data | Staff';
 		$this->load->model('m_karyawan');
 		$data['data_staff'] = $this->m_karyawan->getDataStaff();
@@ -77,19 +76,23 @@ class Karyawan extends CI_Controller {
 		$this->load->view('admin/businesslogic/v_karyawan_staff', $data);
     }
 
-	public function editKaryawan($id)
-    {
-		$data['page_title'] = 'Data | Edit';
-		$this->load->model('m_karyawan');
-		$where = array('id_karyawan' =>$id);
-		$data['data_edit'] = $this->m_karyawan->getDataEdit($where,'tbl_karyawan')->result();
-		$this->load->view('admin/businesslogic/v_edit_karyawan', $data);
-
-    
+	public function editKaryawan()
+    {	
+		isAdmin();
+		if(!isset($_GET['id'])){
+			redirect('admin/dashboard');
+		} else {	
+			$data['page_title'] = 'Data | Edit';
+			$this->load->model('m_karyawan');
+			$where = array('id_karyawan' => $_GET['id']);
+			$data['data_edit'] = $this->m_karyawan->getDataEdit($where,'tbl_karyawan')->result();
+			$this->load->view('admin/businesslogic/v_edit_karyawan', $data);
+		}
     }
 
 	public function updateDataKaryawan()
 	{	
+		isAdmin();
 		$id = $this->input->post('id_karyawan');
 		$this->load->model('m_karyawan');
         $data = array(
@@ -114,6 +117,7 @@ class Karyawan extends CI_Controller {
 
 	public function deleteKaryawan($id)
     {	
+		isAdmin();
 		$this->load->model('m_karyawan');
 	    $this->m_karyawan->deleteKaryawan($id);
         $this->session->set_flashdata('flash', 'dihapus');

@@ -7,6 +7,7 @@ class SettingBonus extends CI_Controller {
 	{
 		parent::__construct();
 		notLogin();
+		isAdmin();
 	}
 	
 	public function index()

@@ -27,6 +27,9 @@
     <!-- <link rel="shortcut icon" href="<?php echo base_url('assets/sbadmin2-templating')?>/img/logoMasjid.png"
         type="image/x-icon"> -->
     <link href="<?php echo base_url('assets/sbadmin2-templating')?> /css/script.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="<?php echo base_url('assets/sbadmin2-templating')?>/img/buildings.png"
+        type="image/x-icon">
 </head>
 
 <body id="page-top">

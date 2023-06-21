@@ -15,7 +15,7 @@
       <div class="flash-data" data-flashdata="<?php echo $this->session->flashdata('flash'); ?>"></div>
 
       <!-- Page Heading -->
-      <h1 class="h3 mb-2 text-gray-800">Tabel Staff</h1>
+      <h1 class="h3 mb-2 text-gray-800">Data Staff</h1>
       <p class="mb-4">Dibawah ini merupakan data dari Staff</p>
       <!-- DataTales Example -->
       <div class="card shadow mb-4">
@@ -35,7 +35,9 @@
                               <th>Jabatan</th>
                               <th>Gaji Pokok</th>
                               <th>Gaji Total</th>
+                              <?php if ($this->session->userdata('role_user') == 'admin') : ?>
                               <th>Aksi</th>
+                              <?php endif; ?>
                           </tr>
                       </thead>
                       <tfoot>
@@ -48,7 +50,9 @@
                               <th>Jabatan</th>
                               <th>Gaji Pokok</th>
                               <th>Gaji Total</th>
+                              <?php if ($this->session->userdata('role_user') == 'admin') : ?>
                               <th>Aksi</th>
+                              <?php endif; ?>
                           </tr>
                       </tfoot>
                       <tbody>
@@ -63,14 +67,20 @@
                               <td><?php echo $value['nik_karyawan'] ?></td>
                               <td><?php echo $value['nama_karyawan'] ?></td>
                               <td><?php echo $value['alamat_karyawan'] ?></td>
-                              <td>0<?php echo $value['no_tlp'] ?></td>
+                              <td><?php echo $value['no_tlp'] ?></td>
                               <td><?php echo $value['jabatan_karyawan'] ?></td>
                               <td><?php echo number_format($value['gaji_pokok'], 2,',','.')?>
                               </td>
                               <td><?php echo number_format($gaji_total, 2,',','.')?></td>
-                              <td><?php echo anchor('admin/karyawan/editkaryawan/' . $value['id_karyawan'], '<div class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></div>')?>
-                                  <?php echo anchor('admin/karyawan/deletekaryawan/' .$value['id_karyawan'],'<div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></div>')?>
+                              <?php if ($this->session->userdata('role_user') == 'admin') : ?>
+                              <td>
+                                  <a class="btn btn-primary btn-sm"
+                                      href="<?php echo base_url('admin/karyawan/editkaryawan') .'?id='. $value['id_karyawan']?>"><i
+                                          class="fa fa-edit"></i></a>
+                                  <button type="button" value="<?php echo $value['id_karyawan']?>"
+                                      class="btn btn-danger btn-sm delete-button"><i class="fa fa-trash"></i></button>
                               </td>
+                              <?php endif; ?>
 
                           </tr>
                           <?php $no++; endforeach; ?>

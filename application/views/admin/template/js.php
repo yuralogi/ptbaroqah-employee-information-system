@@ -52,10 +52,24 @@
 <script>
 $(document).ready(function() {
     $(".nominal-rupiah").keyup(function() {
-        console.log("Berhasil");
         $(this).maskNumber({
             integer: true,
             thousands: "."
+        })
+    })
+})
+</script>
+
+
+<!-- NIK Validation -->
+<script>
+$(document).ready(function() {
+    $(".nik-validation").keyup(function() {
+        $(this).maskNumber({
+            integer: true,
+            thousands: "",
+            "max": 16,
+            "min": 16
         })
     })
 })
@@ -105,9 +119,28 @@ if (flashData == "ditambahkan") {
         'Username dan Password tidak ditemukan',
         'error'
     )
+} else if (flashData == "sudah-rekap") {
+    Swal.fire(
+        'Gagal',
+        'Data Bulan Tersebut Sudah di Rekap',
+        'error'
+    )
+} else if (flashData == "berhasil-rekap") {
+    Swal.fire(
+        'Berhasil!',
+        'Data Telah Berhasil di Rekap',
+        'success'
+    )
+} else if (flashData == "cetak-kosong") {
+    Swal.fire(
+        'Gagal',
+        'Data Kosong',
+        'info'
+    )
 }
 </script>
 
+<!-- Confirm to Logout -->
 <script>
 function confirmLogout() {
     Swal.fire({
@@ -127,8 +160,9 @@ function confirmLogout() {
 }
 </script>
 
+<!-- Confirm Delete Data Karyawan -->
 <script>
-function confirmDelete() {
+function confirmDelete(idDelete) {
     Swal.fire({
         title: 'Anda Yakin untuk Menghapus?',
         text: "",
@@ -140,9 +174,54 @@ function confirmDelete() {
         cancelButtonText: 'Batal'
     }).then((result) => {
         if (result.isConfirmed) {
-            window.location.href = "<?php echo base_url('admin/karyawan/deletekaryawan') ?>"
+            var url = "<?php echo base_url();?>";
+            window.location.href = url + "admin/karyawan/deletekaryawan/" + idDelete;
         }
     })
 }
 </script>
+
+<script>
+$(document).ready(function() {
+    $(".delete-button").click(function(e) {
+        e.preventDefault();
+        var id = $(this).val();
+        Swal.fire({
+            title: 'Anda Yakin untuk Menghapus?',
+            text: "",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yakin',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                var url = "<?php echo base_url();?>";
+                window.location.href = url + "admin/karyawan/deletekaryawan/" + id;
+            }
+        })
+
+    })
+})
+</script>
+
+<!-- Confirm Delete Data Karyawan -->
+<script>
+function confirmtoPrint() {
+    Swal.fire({
+        title: 'Anda Yakin untuk Mencetak?',
+        text: "",
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yakin',
+        cancelButtonText: 'Batal'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = "<?php echo base_url('admin/laporan/cetaklaporan'); ?>"
+        }
+    })
+}
 </script>
